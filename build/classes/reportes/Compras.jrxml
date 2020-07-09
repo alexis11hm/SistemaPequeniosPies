@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Compras" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4565c020-bc23-4aa8-a907-0a86c87f76ad">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="sucursal" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.codbar_pro,nom_pro,rr.cve_res,cant_renres,ppu_renres,num_num,fechacad_renres from renglonresurtir rr inner join numerozapato nz on rr.cve_num=nz.cve_num join producto p on p.codbar_pro=rr.codbar_pro join resurtir r on rr.cve_res=r.cve_res where cve_suc=$P!{sucursal} and fecha_res between $P!{inicio} and $P!{fin};]]>
+	</queryString>
+	<field name="codbar_pro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cve_res" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cant_renres" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ppu_renres" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_num" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechacad_renres" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="168" y="12" width="242" height="49" uuid="5ebfc053-816e-4274-8795-393789fc982c"/>
+				<textElement>
+					<font size="28"/>
+				</textElement>
+				<text><![CDATA[Reporte Compras]]></text>
+			</staticText>
+			<image>
+				<reportElement x="24" y="0" width="76" height="79" uuid="e9fe41f8-81e4-498c-98b9-1bef22eb6e3d"/>
+				<imageExpression><![CDATA["C:\\Users\\HP-Alexis\\Documents\\NetBeansProjects\\ProyectoTallerDeBaseDeDatos\\src\\imagenes\\logoreporte.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="446" y="27" width="100" height="20" uuid="0268eae9-107f-4e31-b44d-da15ec287316"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6fa256a2-d857-4396-98af-d45408466bfc"/>
+				<text><![CDATA[CODIGO DE BARRAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="81" height="20" uuid="961dc32f-1be9-4936-be44-c6082fc7274d"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="0" width="64" height="20" uuid="7e679875-eb55-425f-bde8-6db4b7287a3c"/>
+				<text><![CDATA[RESURTIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="0" width="65" height="20" uuid="81b7aca8-6366-4af1-be56-2a7fbd666594"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="2" width="100" height="20" uuid="523fb73e-d301-41a9-b2c9-f33d58bba2c7"/>
+				<text><![CDATA[PRECIO P/UNIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="2" width="64" height="20" uuid="203cda39-d863-46ac-8750-a4be3c4f3a34"/>
+				<text><![CDATA[NUMERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="2" width="100" height="20" uuid="31a145c9-17e3-44f5-9a33-803e6e869017"/>
+				<text><![CDATA[FECHA CADUCIDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="19d4dfb2-2f5b-4f5c-9948-51163f3b6ff1"/>
+				<textFieldExpression><![CDATA[$F{codbar_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="81" height="20" uuid="5f2ae5d6-85a7-4f0e-aeeb-2c966c1dc85a"/>
+				<textFieldExpression><![CDATA[$F{nom_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="181" y="0" width="64" height="20" uuid="44f105a4-9a46-4453-ad53-7363c1b14405"/>
+				<textFieldExpression><![CDATA[$F{cve_res}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="0" width="65" height="20" uuid="eba0b6b8-2e50-41b2-b64f-0b0d56851c54"/>
+				<textFieldExpression><![CDATA[$F{cant_renres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="100" height="20" uuid="90cf34e1-8a4b-4ac7-8440-86f1409f7930"/>
+				<textFieldExpression><![CDATA[$F{ppu_renres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="0" width="64" height="20" uuid="67f60e60-f0f7-488e-aa7a-cb370d8f5973"/>
+				<textFieldExpression><![CDATA[$F{num_num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="100" height="20" uuid="6e00738b-577c-418a-af06-9f6924ea9813"/>
+				<textFieldExpression><![CDATA[$F{fechacad_renres}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="219" y="0" width="80" height="20" uuid="7a9e8c0b-22b5-417d-bd91-ad141c061f19"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="299" y="0" width="40" height="20" uuid="3bc4d173-e696-4330-9ed8-f2aa2359544a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="5" splitType="Stretch"/>
+	</summary>
+</jasperReport>

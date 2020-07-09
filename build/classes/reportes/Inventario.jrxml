@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Inventario" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a369214-cbe2-4b9c-8e6b-bef887bffabe">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="sucursal" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.codbar_pro,nom_pro,ppu_renres,num_num,fechacad_renres,cant_renres,baja_renres from producto p join renglonresurtir rr on p.codbar_pro=rr.codbar_pro join numerozapato nz on rr.cve_num=nz.cve_num join resurtir r on rr.cve_res=r.cve_res where baja_renres>0 and cve_suc=$P!{sucursal};]]>
+	</queryString>
+	<field name="codbar_pro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_pro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ppu_renres" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_num" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechacad_renres" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cant_renres" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="baja_renres" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="17" y="0" width="79" height="79" uuid="533c5004-644d-4018-a32f-d40b8dfcf873"/>
+				<imageExpression><![CDATA["C:\\Users\\HP-Alexis\\Documents\\NetBeansProjects\\ProyectoTallerDeBaseDeDatos\\src\\imagenes\\logoreporte.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="452" y="33" width="100" height="20" uuid="41480657-31ed-421e-9a46-b781c493546d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="153" y="18" width="284" height="50" uuid="e725ebc7-1d43-4b81-b7ef-0bb055ac7cbe"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[REPORTE INVENTARIO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="8fc1fd23-13d7-4d9e-bf1b-d8d3869179a3"/>
+				<text><![CDATA[CODIGO DE BARRAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="fe83dca8-f30d-4a30-b9b5-09d93951e3f6"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="68" height="20" uuid="2ed1b0c6-095c-4389-b871-4e115c643997"/>
+				<text><![CDATA[PRECIO P/U]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="0" width="69" height="20" uuid="32681514-9fac-4383-b503-828e1ca7d9b4"/>
+				<text><![CDATA[NUMERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="0" width="100" height="20" uuid="d6416033-9a53-47ed-a788-8fe5fc6ec7a4"/>
+				<text><![CDATA[FECHA CADUCIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="0" width="68" height="20" uuid="49c82ea5-ddcc-4607-8d11-ed50a760e8db"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="0" width="62" height="20" uuid="4b8549fb-14dd-4564-899f-d54cf020f0e2"/>
+				<text><![CDATA[EXISTENCIA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6de1e376-12b5-48ab-ae5c-9594e2e83671"/>
+				<textFieldExpression><![CDATA[$F{codbar_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="b5d6e0dd-c51e-473f-b729-5ed94c3156f5"/>
+				<textFieldExpression><![CDATA[$F{nom_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="68" height="20" uuid="999b6956-8f34-4210-ab4d-104b5a931be7"/>
+				<textFieldExpression><![CDATA[$F{ppu_renres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="0" width="69" height="20" uuid="de09855a-04c0-451d-96d0-87bb11e98f70"/>
+				<textFieldExpression><![CDATA[$F{num_num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="0" width="100" height="20" uuid="0377560e-5f0d-4f24-8876-8983bcc62b50"/>
+				<textFieldExpression><![CDATA[$F{fechacad_renres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="0" width="68" height="20" uuid="5fdf80e1-67d0-403e-a093-bfaeca977001"/>
+				<textFieldExpression><![CDATA[$F{cant_renres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="62" height="20" uuid="fe04e0ae-e665-42b7-a126-49656633d00c"/>
+				<textFieldExpression><![CDATA[$F{baja_renres}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="217" y="0" width="80" height="20" uuid="ca932129-5548-4ae3-80b4-9266c28a5fd8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="297" y="0" width="40" height="20" uuid="7ba64591-3bc4-42cf-8f8a-d248370d76c5"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="3" splitType="Stretch"/>
+	</summary>
+</jasperReport>

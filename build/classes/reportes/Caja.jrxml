@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Caja" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b80d1915-4a65-4927-aae7-741a5f4b5fba">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select calle_suc,sum(entra_caja), sum(sale_caja), sum(entra_caja)-sum(sale_caja) from caja c join sucursal s on c.cve_suc=s.cve_suc where fecha_caja between $P!{inicio} and $P!{fin} group by s.cve_suc;]]>
+	</queryString>
+	<field name="calle_suc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sum(entra_caja)" class="java.lang.Double"/>
+	<field name="sum(sale_caja)" class="java.lang.Double"/>
+	<field name="sum(entra_caja)-sum(sale_caja)" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="445" y="32" width="100" height="20" uuid="056c9a98-db9b-4b50-b386-4f4588041892"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="31" y="5" width="76" height="74" uuid="e6f897f9-eff6-4ed6-9b5f-8b3438c6a481"/>
+				<imageExpression><![CDATA["C:\\Users\\HP-Alexis\\Documents\\NetBeansProjects\\ProyectoTallerDeBaseDeDatos\\src\\imagenes\\logoreporte.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="163" y="24" width="259" height="55" uuid="909fed33-9858-40d3-afdb-da8d0bda433e"/>
+				<textElement>
+					<font size="34"/>
+				</textElement>
+				<text><![CDATA[Reporte Cajas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="0" width="100" height="20" uuid="cf6e4f76-e224-4de1-87f9-6008177cbfa5"/>
+				<text><![CDATA[Sucursal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="0" width="100" height="20" uuid="88b1ed5f-30f4-40cf-9e1d-d0920c75569f"/>
+				<text><![CDATA[Entro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="0" width="100" height="20" uuid="21b8101c-d7b6-4d96-a720-b9fbadd0b157"/>
+				<text><![CDATA[Salio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="0" width="100" height="20" uuid="6468085d-d45e-436c-9f7d-eb3946988382"/>
+				<text><![CDATA[Perdida/Ganancia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="0" width="100" height="20" uuid="de5a8a37-69c2-4855-b947-1aa291ef310d"/>
+				<textFieldExpression><![CDATA[$F{calle_suc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="0" width="100" height="20" uuid="fe684661-0686-43cb-b203-8a3a756b4650"/>
+				<textFieldExpression><![CDATA[$F{sum(entra_caja)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="0" width="100" height="20" uuid="31024739-5a6e-4f39-9008-a7d590c8c822"/>
+				<textFieldExpression><![CDATA[$F{sum(sale_caja)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="100" height="20" uuid="37c4c799-13fa-4ce7-8c26-3a548d12f67a"/>
+				<textFieldExpression><![CDATA[$F{sum(entra_caja)-sum(sale_caja)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="221" y="0" width="80" height="20" uuid="cba126cd-cdd2-4fdf-96b1-617c7f00ceab"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="301" y="0" width="40" height="20" uuid="10090ffe-907c-4af2-8c90-57f9ac5c6b34"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="3" splitType="Stretch"/>
+	</summary>
+</jasperReport>
